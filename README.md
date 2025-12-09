@@ -1,6 +1,6 @@
 # Uno Q
 
-#### Tue  9 Dec 18:03:18 UTC 2025
+#### Tue  9 Dec 18:35:25 UTC 2025
 
 ```
  sudo halt  # seems to do what's wanted
@@ -15,6 +15,8 @@ Wait less than 7 seconds: journactl log likely to be truncated (system did not s
 Wait more than 18 seconds: reboot starts.
 
 Times are approximate.  Target MCU (STM32U585) program unaffected - runs (possibly) uninterrupted (and indefinitely) after `sudo halt` is given.
+
+[Black Pill STM32u585 - zephyr project](https://docs.zephyrproject.org/latest/boards/weact/blackpill_u585ci/doc/index.html)
 
 Various LED cycler toy programs (running on the STM32U585 MCU) demonstrate that adequately.
 
