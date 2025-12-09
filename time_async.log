@@ -1,0 +1,17 @@
+#### sudo halt
+
+Dec 09 18:38:19 hostnm sudo[1813]:  arduino : TTY=pts/0 ; PWD=/home/arduino ; USER=root ; COMMAND=/usr/sbin/halt
+
+Timestamp does not get updated between sessions.
+It updates long after a cold boot, and the log
+entries carry over from the previous time sync:
+
+Dec 09 18:38:26 hostnm systemd-shutdown[1]: Sending SIGTERM to remaining processes...
+Dec 09 18:38:26 hostnm systemd-journald[234]: Journal stopped
+
+-- Boot ******************************** --
+
+Dec 09 18:38:27 hostnm kernel: Booting Linux on physical CPU 0x0000000000 [0x********]
+Dec 09 18:38:27 hostnm kernel: Linux version 6.1x.y-************* (root@************) (aarch64-linu
+
+#### end.
