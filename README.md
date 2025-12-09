@@ -10,14 +10,14 @@
 
 Between 7 and 18 seconds wait after  `sudo poweroff`  is about right, before the system reboots on its own.  `sudo halt` does not exhibit this behavior (TODO verify that is the correct variation of the `shutdown -h now` suite of related commands).
 
-Wait less than 7 seconds: journactl log likely to b etruncated (system did not shut down all the way).
+Wait less than 7 seconds: journactl log likely to be truncated (system did not shut down all the way).
 
 Wait more than 18 seconds: reboot starts.
 
-Times are approximate.  Target MCU (QRB2210) program unaffected - runs (possibly) uninterrupted (and indefinitely) after `sudo halt` is given.
+Times are approximate.  Target MCU (STM32U585) program unaffected - runs (possibly) uninterrupted (and indefinitely) after `sudo halt` is given.
 
-Various LED cycler toy programs demonstrate that adequately.
+Various LED cycler toy programs (running on the STM32U585 MCU) demonstrate that adequately.
 
-`adb  devices` on the host PC verifies the Linux side (QRB2210) did in fact change state - enough to cause the difference in response to `adb devices`.
+`adb  devices` on the host PC verifies the Linux side (QRB2210 MPU) did in fact change state (possibly: halt) enough to cause the difference in response to `adb devices`.
 
 end.
