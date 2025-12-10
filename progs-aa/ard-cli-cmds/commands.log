@@ -1,0 +1,6 @@
+#  cd ; cd Arduino ; arduino-cli sketch new blink
+#  arduino-cli board list
+#  arduino-cli board attach -b arduino:zephyr:unoq
+#  arduino-cli compile
+#  arduino-cli compile --verbose
+#  arduino-cli upload
