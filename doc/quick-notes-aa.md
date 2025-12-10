@@ -1,6 +1,6 @@
 Wed 10 Dec 16:14:22 UTC 2025
 
-One may completely ignored the presence of anything Python for a few days, on the Uno Q .. and not miss it.
+One may completely ignore the presence of anything Python for a few days, on the Uno Q .. and not miss it.
 
 Useful (instead) is `'arduino-cli'` in the `adb shell`. 
 
@@ -40,13 +40,6 @@ space . ." cr" cr cr space .s cr
 ### Makefile
 
 ```
-all:
-	@adb push job.fs /home/arduino
-	@adb shell pforth /home/arduino/job.fs
-```
-
-
-```
 desktop:pForth.d $ cat Makefile 
 
 all:
@@ -54,6 +47,7 @@ all:
     @adb shell pforth /home/arduino/job.fs
 ```
 
+### Transcript - make
 ```
 desktop:pForth.d $ make
 
