@@ -8,7 +8,7 @@ Useful (instead) is `'arduino-cli'` in the `adb shell`.
 Run a 'job' on the Uno Q without logging in to an interactive shell:
 
 ```
-desktop:pForth.d $ cat Makefile
+desktop:pForth.d $ cat job.fs
 
 \ job.fs
 \ Wed 10 Dec 13:25:11 UTC 2025
