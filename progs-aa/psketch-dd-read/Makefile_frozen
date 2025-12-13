@@ -1,0 +1,20 @@
+
+all:	compile_verbose
+
+compile_verbose:
+	@arduino-cli compile --verbose
+
+clean:
+	@rm -rf ./fables
+
+distclean:	clean
+
+upload:
+	@arduino-cli upload
+
+install:	upload
+
+# find all tabs and remove them in the status, to help form .gitignore entries
+git_status:
+	@git status | cat | tr -d '\t'
+
