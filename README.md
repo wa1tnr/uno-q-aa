@@ -1,5 +1,23 @@
 # Uno Q
 
+#### Sat 14 Feb 22:41:11 UTC 2026
+
+`arduino-uno-q` seems to be the most successful tag for
+this repository - produces more relevant hits than the
+others.
+
+Others: `arduino-app-lab` `uno-q` `unoq` `stm32u585` `qualcomm-qrb2210`
+
+`arduino-cli` did not seem to pick up Uno Q projects, but has its
+own following.
+
+Of the `2210` mentions, `qrb2210` (not yet carried here) did well.
+One person only used `qualcomm-qrb2210` and the other only used
+`qrb2210`.  The one using the `qualcomm-qrb2210` solely identified
+the Uno Q relevance using that one tag.  So `qrb2210` seen as
+slightly more apt to be relevant to picking up even more tags. ;)
+Still too early to tell which tags will succeed.
+
 #### Tue  9 Dec 18:35:25 UTC 2025
 
 ```
