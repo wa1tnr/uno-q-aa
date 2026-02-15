@@ -41,9 +41,9 @@ space . ." cr" cr cr space .s cr
 
 ### Makefile
 
-```
-desktop:pForth.d $ cat Makefile 
+` desktop:pForth.d $ cat Makefile`
 
+```
 all:
 	@adb push job.fs /home/arduino
 	@adb shell pforth /home/arduino/job.fs
