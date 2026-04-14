@@ -46,6 +46,8 @@ WORKDIR /root/cruft.d
 COPY xdatex ./
 
 WORKDIR /root
-RUN bash
+# RUN bash
+
+RUN /usr/bin/lynx -width=86 -trim_blank_lines -nomargins -dump https://kamala.cod.edu/ct/latest.fous51.KALY.html
 
 # end.
