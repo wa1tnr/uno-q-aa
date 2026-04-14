@@ -1,0 +1,7 @@
+
+create_image:	Dockerfile
+	@echo '  docker build .  # seems a tarball could be used instead of a dot'
+
+listing:
+	@./util/ls-A
+
