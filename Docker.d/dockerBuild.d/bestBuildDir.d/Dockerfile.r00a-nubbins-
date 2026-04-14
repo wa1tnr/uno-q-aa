@@ -1,0 +1,28 @@
+# Tue Apr 14 12:52:00 PM UTC 2026
+
+FROM ubuntu
+RUN apt-get update
+RUN apt-get install -y vim less lynx
+RUN apt-get install -y silversearcher-ag
+RUN mkdir -m 700 /root/cruft.d
+RUN mkdir -m 700 /root/cruft.d/util
+
+COPY .bashrc /root
+
+RUN cd /root/cruft.d
+COPY c0ffee .
+
+RUN cd ..
+COPY semaphore .
+
+COPY Dockerfile /root/cruft.d/Dockerfile.r00a-
+COPY EDUARD.FLEMING /root
+COPY listing.log /root/cruft.d/listing.log
+COPY lynx_bookmarks.html /root
+COPY .lynxrc /root
+COPY Makefile /root/cruft.d/Makefile.r00a-
+COPY util/ls-A /root/cruft.d/util/ls-A
+COPY xdatex /root/cruft.d/xdatex
+RUN bash
+
+# end.
