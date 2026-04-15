@@ -9,6 +9,13 @@ FROM ubuntu
 RUN apt-get update
 RUN apt-get install -y vim less lynx ca-certificates
 RUN apt-get install -y silversearcher-ag
+
+RUN useradd -ms /bin/bash newuser
+USER newuser
+WORKDIR /home/newuser
+
+# so how to get root as that user
+
 RUN mkdir -m 700 /root/cruft.d
 RUN mkdir -m 700 /root/cruft.d/util
 
@@ -50,8 +57,4 @@ COPY xdatex ./
 WORKDIR /root
 RUN bash
 
-
-RUN useradd -ms /bin/bash newuser
-USER newuser
-WORKDIR /home/newuser
 # end.
