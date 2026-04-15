@@ -7,7 +7,7 @@
 
 FROM ubuntu
 RUN apt-get update
-RUN apt-get install -y vim less lynx ca-certificates
+RUN apt-get install -y vim less lynx
 RUN apt-get install -y silversearcher-ag
 RUN mkdir -m 700 /root/cruft.d
 RUN mkdir -m 700 /root/cruft.d/util
@@ -45,13 +45,7 @@ COPY util/ls-A ./
 WORKDIR /root/cruft.d
 COPY xdatex ./
 
-# RUN /usr/bin/lynx -width=86 -trim_blank_lines -nomargins -dump https://kamala.cod.edu/ct/latest.fous51.KALY.html
-
 WORKDIR /root
 RUN bash
 
-
-RUN useradd -ms /bin/bash newuser
-USER newuser
-WORKDIR /home/newuser
 # end.
