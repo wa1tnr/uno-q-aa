@@ -1,3 +1,4 @@
+# off-device       Wed 15 Apr 12:07:39 UTC 2026
 # on-device Uno Q: Wed Apr 15 11:10:15 UTC 2026
 
 listall:
@@ -49,6 +50,8 @@ restart_container:
 	@/bin/echo -e '  docker container attach <NAME>'
 
 great_example_lynx:
-	@/bin/echo -e '  docker run -u <name|uid> -it <IMAGE> ./this.sh'
+	@/bin/echo -e '  docker run -u <name|uid> -it <IMAGE> ./dothis.sh'
+	@/bin/echo -e '  or'
+	@/bin/echo -e '  docker run                   <IMAGE> ./dothis.sh'
 
 # end.
