@@ -10,16 +10,15 @@ RUN apt-get update
 RUN apt-get install -y vim less lynx ca-certificates
 RUN apt-get install -y silversearcher-ag
 
-RUN useradd -ms /bin/bash newuser
-USER newuser
-WORKDIR /home/newuser
+RUN useradd -ms /bin/bash plato
+RUN adduser plato sudo
+USER plato
+WORKDIR /home/plato
 
-# so how to get root as that user
+RUN mkdir -m 700 /home/plato/cruft.d
+RUN mkdir -m 700 /home/plato/cruft.d/util
 
-RUN mkdir -m 700 /root/cruft.d
-RUN mkdir -m 700 /root/cruft.d/util
-
-WORKDIR /root
+WORKDIR /home/plato
 COPY .bashrc ./
 
 # documentation example says:
@@ -27,34 +26,34 @@ COPY .bashrc ./
 # create /usr/src/app/rel/test.txt
 # COPY test.txt rel/
 
-WORKDIR /root/cruft.d
+WORKDIR /home/plato/cruft.d
 COPY c0ffee ./
 COPY semaphore ./
 
 COPY Dockerfile ./Dockerfile.r00a-
 
-WORKDIR /root
+WORKDIR /home/plato
 COPY EDUARD.FLEMING ./
 
-WORKDIR /root/cruft.d
+WORKDIR /home/plato/cruft.d
 COPY listing.log ./
 
-WORKDIR /root
+WORKDIR /home/plato
 COPY lynx_bookmarks.html ./
 COPY .lynxrc ./
 
-WORKDIR /root/cruft.d
+WORKDIR /home/plato/cruft.d
 COPY Makefile ./Makefile.r00a-
 
-WORKDIR /root/cruft.d/util
+WORKDIR /home/plato/cruft.d/util
 COPY util/ls-A ./
 
-WORKDIR /root/cruft.d
+WORKDIR /home/plato/cruft.d
 COPY xdatex ./
 
 # RUN /usr/bin/lynx -width=86 -trim_blank_lines -nomargins -dump https://kamala.cod.edu/ct/latest.fous51.KALY.html
 
-WORKDIR /root
+WORKDIR /home/plato
 RUN bash
 
 # end.
