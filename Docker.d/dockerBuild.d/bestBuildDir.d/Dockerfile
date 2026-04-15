@@ -1,21 +1,28 @@
-# Wed Apr 15 07:36:42 UTC 2026
-# was: Tue Apr 14 13:33:11 UTC 2026
+# on-device Uno Q: Wed Apr 15 11:19:32 UTC 2026
 
+# Wed Apr 15 10:45:52 UTC 2026
 # https://stackoverflow.com/questions/27701930/how-to-add-users-to-docker-container
 
-# keywords tudot pelbow navabit
 
-# was: Tue Apr 14 01:22:13 PM UTC 2026
-#      Tue Apr 14 12:52:00 PM UTC 2026
+# keywords sorvaun marlowe tudot pelbow navabit
+
+# was: Wed Apr 15 07:36:42 UTC 2026
+#      Tue Apr 14 13:33:11 UTC 2026
+#      Tue Apr 14 13:22:13 UTC 2026
+#      Tue Apr 14 12:52:00 UTC 2026
 
 FROM ubuntu
 RUN apt-get update
 RUN apt-get install -y vim less lynx \
-	ca-certificates adduser sudo
+	ca-certificates adduser
+
+# ca-certificates adduser sudo
+
 RUN apt-get install -y silversearcher-ag
 
 RUN useradd -ms /bin/bash plato
-RUN adduser plato sudo
+# don't think so - sudo seem over complex here
+# RUN adduser plato sudo
 USER plato
 WORKDIR /home/plato
 
@@ -58,6 +65,10 @@ COPY xdatex ./
 # RUN /usr/bin/lynx -width=86 -trim_blank_lines -nomargins -dump https://kamala.cod.edu/ct/latest.fous51.KALY.html
 
 WORKDIR /home/plato
-RUN bash
+COPY util/dothis.sh ./
+
+# call ./dothis.sh from outside instead of bash
+
+# RUN bash -c ./dothis.sh
 
 # end.
