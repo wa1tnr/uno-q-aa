@@ -1,18 +1,35 @@
-# Tue Apr 14 01:33:11 PM UTC 2026
+# on-device Uno Q: Wed Apr 15 11:19:32 UTC 2026
 
-# keywords tudot pelbow navabit
+# Wed Apr 15 10:45:52 UTC 2026
+# https://stackoverflow.com/questions/27701930/how-to-add-users-to-docker-container
 
-# was: Tue Apr 14 01:22:13 PM UTC 2026
-#      Tue Apr 14 12:52:00 PM UTC 2026
+
+# keywords sorvaun marlowe tudot pelbow navabit
+
+# was: Wed Apr 15 07:36:42 UTC 2026
+#      Tue Apr 14 13:33:11 UTC 2026
+#      Tue Apr 14 13:22:13 UTC 2026
+#      Tue Apr 14 12:52:00 UTC 2026
 
 FROM ubuntu
 RUN apt-get update
-RUN apt-get install -y vim less lynx ca-certificates
-RUN apt-get install -y silversearcher-ag
-RUN mkdir -m 700 /root/cruft.d
-RUN mkdir -m 700 /root/cruft.d/util
+RUN apt-get install -y vim less lynx \
+	ca-certificates adduser
 
-WORKDIR /root
+# ca-certificates adduser sudo
+
+RUN apt-get install -y silversearcher-ag
+
+RUN useradd -ms /bin/bash plato
+# don't think so - sudo seem over complex here
+# RUN adduser plato sudo
+USER plato
+WORKDIR /home/plato
+
+RUN mkdir -m 700 /home/plato/cruft.d
+RUN mkdir -m 700 /home/plato/cruft.d/util
+
+WORKDIR /home/plato
 COPY .bashrc ./
 
 # documentation example says:
@@ -20,35 +37,38 @@ COPY .bashrc ./
 # create /usr/src/app/rel/test.txt
 # COPY test.txt rel/
 
-WORKDIR /root/cruft.d
+WORKDIR /home/plato/cruft.d
 COPY c0ffee ./
 COPY semaphore ./
 
 COPY Dockerfile ./Dockerfile.r00a-
 
-WORKDIR /root
+WORKDIR /home/plato
 COPY EDUARD.FLEMING ./
 
-WORKDIR /root/cruft.d
+WORKDIR /home/plato/cruft.d
 COPY listing.log ./
 
-WORKDIR /root
+WORKDIR /home/plato
 COPY lynx_bookmarks.html ./
 COPY .lynxrc ./
 
-WORKDIR /root/cruft.d
+WORKDIR /home/plato/cruft.d
 COPY Makefile ./Makefile.r00a-
 
-WORKDIR /root/cruft.d/util
+WORKDIR /home/plato/cruft.d/util
 COPY util/ls-A ./
 
-WORKDIR /root/cruft.d
+WORKDIR /home/plato/cruft.d
 COPY xdatex ./
 
 # RUN /usr/bin/lynx -width=86 -trim_blank_lines -nomargins -dump https://kamala.cod.edu/ct/latest.fous51.KALY.html
 
-WORKDIR /root
-RUN bash
+WORKDIR /home/plato
+COPY util/dothis.sh ./
 
+# call ./dothis.sh from outside instead of bash
+
+# RUN bash -c ./dothis.sh
 
 # end.

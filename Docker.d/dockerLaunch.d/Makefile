@@ -1,4 +1,5 @@
-
+# off-device       Wed 15 Apr 12:07:39 UTC 2026
+# on-device Uno Q: Wed Apr 15 11:10:15 UTC 2026
 
 listall:
 	@echo "  docker ps -a"
@@ -19,6 +20,9 @@ run_newest_trial:
 	@echo '  docker run -it <IMAGE ID> bash'
 	@echo '  ex.'
 	@echo '  docker run -it 972fe421b9ca bash'
+
+run_as_root:
+	@echo '  docker run -u root -it <IMAGE ID> bash'
 
 remove:
 	@echo "  docker rm <NAME>"
@@ -41,5 +45,13 @@ rm_example:	example_aaa_h
 	@/bin/echo -e '   $$ docker rm ecstatic_dirac'
 	@/bin/echo -e '  ecstatic_dirac'
 
+restart_container:
+	@/bin/echo -e '  docker container restart <NAME> # tab complete name'
+	@/bin/echo -e '  docker container attach <NAME>'
+
+great_example_lynx:
+	@/bin/echo -e '  docker run -u <name|uid> -it <IMAGE> ./dothis.sh'
+	@/bin/echo -e '  or'
+	@/bin/echo -e '  docker run                   <IMAGE> ./dothis.sh'
 
 # end.
