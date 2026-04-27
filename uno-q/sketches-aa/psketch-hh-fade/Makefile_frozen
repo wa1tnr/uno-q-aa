@@ -1,0 +1,55 @@
+
+# Mon 27 Apr 18:56:11 UTC 2026
+
+all:	compile_verbose	upload
+
+compile_verbose:
+	@arduino-cli compile --verbose
+
+compile_verbx0xose:
+	@arduino-cli compile --build-property "compiler.cpp.extra_flags=-fdiagnostics-color" --verbose
+
+compile_verbose_extra_flags:
+	@arduino-cli compile --build-property "compiler.cpp.extra_flags=-wAll -wErr" --verbose
+
+upload:
+	@arduino-cli upload
+
+install:
+	@echo "    use  'make upload'  instead"
+
+# find all tabs and remove them in the status, to help form .gitignore entries
+git_status:
+	@git status | cat | tr -d '\t'
+
+# CURRENT_PROJECT=AAABBBCCCEEE55544433388811100022
+CURRENT_PROJECT=AAABBBCCCEEE55544433388811100022
+
+listcached:
+	@cd ~/.cache/arduino/sketches ; cd ${CURRENT_PROJECT} ; ls -la ; echo -n ''
+
+_clean:	listcached
+
+# THIS_INO_NAMED='one-two-three-a.ino'
+THIS_INO_NAMED='psketch-hh-fade.ino'
+
+distclean:	_clean
+	@cd ~/.cache/arduino/sketches ; \
+	cd ${CURRENT_PROJECT} ; \
+	rm -rf bu* co* in* .la* li* sk* ; \
+	echo ; \
+	rm -rf rodata_split.ld ; \
+	echo ; \
+	for TOR_BLED_NAM in \
+		".bin"  ".bin-zsk.bin" "_check.tmp" \
+		"_debug.elf" ".elf" ".elf-zsk.bin" \
+		".hex" ".map" "_temp.elf" "_temp.map" ; \
+	do \
+		rm -rf ${THIS_INO_NAMED}$$TOR_BLED_NAM ; \
+	done
+
+clean:	distclean
+
+#  for index in 1 2 3 4 5 6 7 8 9 a b c d e f 00 01 02 ; do run_poll+netstat ; done
+
+# end.
