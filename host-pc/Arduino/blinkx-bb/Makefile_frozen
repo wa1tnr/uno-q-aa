@@ -1,0 +1,82 @@
+# Mon 27 Apr 17:48:16 UTC 2026
+# Sun  4 Jan 23:23:50 UTC 2026
+
+# did not review compile cli switches 27 Apr 2026 update - did simplify active one.
+
+# note: sketch.yaml without /dev/ttyACM0 (copied from Uno Q rsync) did not work.
+
+all:	compile_verbose
+
+compile_verbose:
+	@arduino-cli compile --verbose
+
+compXDile_verbose:	compile_verbose_works_s_lvl_aa
+
+comXpile_verbose:	compile_verbose_works_s_lvl_cc
+
+coXmpile_verbose:	compile_verbose_works_s_lvl_bb
+
+cXompile_verbose:	compile_verbose_works_s_lvl_aa
+
+compile_verbose_works_s_lvl_aa:
+	@arduino-cli compile --verbose --warnings all --build-property "compiler.cpp.extra_flags=-UCONFIG_MULTITHREADING -Wno-unused-parameter -Wno-sign-compare -Wno-maybe-uninitialized"
+
+compile_verbose_works_s_lvl_bb:
+	@arduino-cli compile --verbose --warnings all --build-property "compiler.cpp.extra_flags=-UCONFIG_MULTITHREADING -Wno-unused-parameter -Wno-sign-compare -Wno-maybe-uninitialized -fdiagnostics-color=always"
+
+compile_verbose_works_s_lvl_cc:
+	@arduino-cli compile --verbose --warnings all --build-property "compiler.cpp.extra_flags=-UCONFIG_MULTITHREADING -fdiagnostics-color=always"
+
+
+compile_simple_vb:
+	@arduino-cli compile --warnings all --verbose
+
+compile_sotu:
+	@arduino-cli compile --verbose
+
+upload:
+	@arduino-cli upload
+
+_new_sketch:
+	@arduino-cli sketch new sketch_26jan04a
+
+_list_boards:
+	@arduino-cli board list
+
+board_attach:
+	@arduino-cli board attach -b arduino:zephyr:unoq
+	@arduino-cli board attach -p /dev/ttyACM0
+
+comm:
+	@microcom -p /dev/ttyACM0 -s 115200
+
+git_status:
+	@git status | cat | tr -d '\t'
+
+CURRENT_PROJECT=AABBCCDDEEFF00112233445566778899
+
+listcached:
+	@cd ~/.cache/arduino/sketches ; cd ${CURRENT_PROJECT} ; ls -la ; echo -n ''
+
+_clean:	listcached
+
+THIS_INO_NAMED='blinkx-bb.ino'
+
+distclean:	_clean
+	@cd ~/.cache/arduino/sketches ; \
+	cd ${CURRENT_PROJECT} ; \
+	rm -rf bu* co* in* .la* li* sk* ; \
+	echo ; \
+	rm -rf rodata_split.ld ; \
+	echo ; \
+	for TOR_BLED_NAM in \
+		".bin"  ".bin-zsk.bin" "_check.tmp" \
+		"_debug.elf" ".elf" ".elf-zsk.bin" \
+		".hex" ".map" "_temp.elf" "_temp.map" ; \
+	do \
+		rm -rf ${THIS_INO_NAMED}$$TOR_BLED_NAM ; \
+	done
+
+clean:	distclean
+
+# end.
