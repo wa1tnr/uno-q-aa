@@ -1,0 +1,43 @@
+
+# Mon 27 Apr 19:07:13 UTC 2026
+
+all:	compile_verbose	upload
+
+compile_verbose:
+	@arduino-cli compile --verbose
+
+upload:
+	@arduino-cli upload
+
+install:
+	@echo "    use  'make upload'  instead"
+
+# find all tabs and remove them in the status, to help form .gitignore entries
+git_status:
+	@git status | cat | tr -d '\t'
+
+CURRENT_PROJECT=AAABBBCCCEEE55544433388811100022
+
+listcached:
+	@cd ~/.cache/arduino/sketches ; cd ${CURRENT_PROJECT} ; ls -la ; echo -n ''
+
+_clean:	listcached
+
+THIS_INO_NAMED='psketch-ff-fade.ino'
+
+distclean:	_clean
+	@cd ~/.cache/arduino/sketches ; \
+	cd ${CURRENT_PROJECT} ; \
+	rm -rf bu* co* in* .la* li* sk* ; \
+	echo ; \
+	for TOR_BLED_NAM in \
+		".bin"  ".bin-zsk.bin" "_check.tmp" \
+		"_debug.elf" ".elf" ".elf-zsk.bin" \
+		".hex" ".map" ; \
+	do \
+		rm -rf ${THIS_INO_NAMED}$$TOR_BLED_NAM ; \
+	done
+
+clean:	distclean
+
+# end.
