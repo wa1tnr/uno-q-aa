@@ -1,0 +1,20 @@
+
+Program state on Sat 13 June 2026 as found on github.
+
+After uploading to github, was then downloaded and tested
+on Uno Q hardware (nothing unusual noted; seems to be the
+intended program and state of that program).
+
+Not fully inclusive at the moment 20:40 UTC Sat 13 Jun 2026.
+
+That is to say, the mechanism (in python) for QRB2210 is
+not yet in this repository.
+
+It is however already in the Manual for Uno Q (see arduino.cc)
+and that is where it comes from.
+
+sha1sums
+
+17218a336e92de49efa8de00c9d2e239d6091044  Makefile_frozen
+044bdd6de24bdf5afad021aaa530e6435f8f1b9b  sketch.ino
+5cb6d306271762b3d6351f9807a4c0175f00d940  sketch.yaml
