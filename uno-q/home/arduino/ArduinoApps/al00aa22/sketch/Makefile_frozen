@@ -1,1 +1,88 @@
-Sat Jun 13 07:06:12 PM UTC 2026
+
+# Sat Jun 13 19:22:50 UTC 2026
+
+# quite a mess 'but it works' as the novices say
+
+all:	distclean delayed compile_verbose
+
+xall:	distclean
+
+essential_comp_verb:
+	@arduino-cli compile --verbose
+
+compile_verbose:	essential_comp_verb
+	@echo ; echo ; echo -n '        waiting 12 seconds..' ; \
+		sleep 2 ; echo '.  Done.';echo;echo '        now:  \047make upload\047'
+
+delayed:
+	@sleep 1
+
+upload:
+	@arduino-cli upload
+
+install:
+	@echo "    use  'make upload'  instead"
+
+git_status:
+	@git status | cat | tr -d '\t'
+
+# CURRENT_PROJECT=AAABBBCCCEEE55544433388811100022
+CURRENT_PROJECT=AAABBBCCCEEE55544433388811100022
+
+_listcached_a:
+	@cd ~/.cache/arduino/sketches ; cd ${CURRENT_PROJECT} ; ls -la ; echo -n ''
+
+_listcached_b:
+	@cd ~/.cache/arduino/sketches ; cd ${CURRENT_PROJECT} ; ls -la ; echo -n '' ; echo -n ''
+
+THIS_INO_NAMED='sketch.ino'
+# /home/arduino/ArduinoApps/al00aa22/sketch/sketch.ino
+
+_distclean:
+	@cd ~/.cache/arduino/sketches ; \
+	cd ${CURRENT_PROJECT} ; \
+	rm -rf bu* co* in* .la* li* sk* ; \
+	echo ; \
+	for TOR_BLED_NAM in \
+		".bin"  ".bin-zsk.bin" "_check.tmp" \
+		"_debug.elf" ".elf" ".elf-zsk.bin" \
+		"_temp.elf" \
+		"_temp.map" \
+		".hex" ".map" ; \
+	do \
+		rm -rf ${THIS_INO_NAMED}$$TOR_BLED_NAM ; \
+		rm -rf rodata_split.ld ; \
+	done
+
+
+# untested belief that two targets with same content
+# will not both be run - so faked by adding idempotent
+# statements not 'really' affecting much of anything:
+
+_spaced_a:
+	@echo ''
+
+_spaced_b:
+	@echo -n '' ; echo ''
+
+_spaced_c:
+	@echo -n '' ; echo -n '' ; echo ''
+
+_spaced_d:
+	@echo -n '' ; echo -n '' ; echo -n '' ; echo ''
+
+_stamped_a:
+	@echo -n '    '
+	@date
+
+noneia:
+	@echo -n '        sleeping 5..' ;sleep 5 ; echo '.  Done.'
+
+
+# don't look at me like that. ;)
+
+distclean:	_spaced_a	_stamped_a	_spaced_b	_listcached_a	_spaced_c	_distclean	_listcached_b	_spaced_d
+
+clean:	distclean
+
+# end.
