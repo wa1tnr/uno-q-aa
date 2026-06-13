@@ -1,0 +1,2 @@
+     PATH="$HOME/bin_dir:$PATH"
+     export PS1=" unoq $ "
