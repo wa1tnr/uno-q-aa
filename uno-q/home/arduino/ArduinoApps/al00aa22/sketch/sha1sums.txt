@@ -11,7 +11,11 @@ That is to say, the mechanism (in python) for QRB2210 is
 not yet in this repository.
 
 It is however already in the Manual for Uno Q (see arduino.cc)
-and that is where it comes from.
+and that is where it comes from:
+
+Usage Example (Custom Python Client)
+
+ [ https://docs.arduino.cc/tutorials/uno-q/user-manual/#usage-example-custom-python-client ]
 
 sha1sums
 
